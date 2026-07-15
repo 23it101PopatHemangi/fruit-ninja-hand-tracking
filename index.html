@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ninja Fruit Slicer | HTML5 Premium Arcade Game</title>
+    <meta name="description" content="Slice fruits, avoid bombs, trigger freeze time, and unlock double score combos in this premium HTML5 canvas Fruit Ninja game. Powered by Phaser 3 with Webcam Hand-Tracking.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- On-screen Error Diagnostic Script -->
+    <script>
+        window.onerror = function(message, source, lineno, colno, error) {
+            const errorDiv = document.createElement('div');
+            errorDiv.style.position = 'absolute';
+            errorDiv.style.top = '0';
+            errorDiv.style.left = '0';
+            errorDiv.style.width = '100%';
+            errorDiv.style.backgroundColor = '#ff2d55';
+            errorDiv.style.color = '#ffffff';
+            errorDiv.style.padding = '15px';
+            errorDiv.style.zIndex = '99999';
+            errorDiv.style.fontFamily = 'monospace';
+            errorDiv.style.fontSize = '14px';
+            errorDiv.style.boxShadow = '0 4px 15px rgba(0,0,0,0.5)';
+            errorDiv.innerText = 'Runtime Error: ' + message + ' \nSource: ' + source + ' \nLine: ' + lineno;
+            document.body.appendChild(errorDiv);
+            return false;
+        };
+        window.addEventListener('unhandledrejection', function(event) {
+            const errorDiv = document.createElement('div');
+            errorDiv.style.position = 'absolute';
+            errorDiv.style.top = '0';
+            errorDiv.style.left = '0';
+            errorDiv.style.width = '100%';
+            errorDiv.style.backgroundColor = '#ff6b4a';
+            errorDiv.style.color = '#ffffff';
+            errorDiv.style.padding = '15px';
+            errorDiv.style.zIndex = '99999';
+            errorDiv.style.fontFamily = 'monospace';
+            errorDiv.style.fontSize = '14px';
+            errorDiv.style.boxShadow = '0 4px 15px rgba(0,0,0,0.5)';
+            errorDiv.innerText = 'Async Promise Rejection: ' + (event.reason ? event.reason.stack || event.reason : 'Unknown rejection');
+            document.body.appendChild(errorDiv);
+        });
+    </script>
+
+    <!-- Phaser 3 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.80.1/dist/phaser.min.js"></script>
+    
+    <!-- MediaPipe Hand-Tracking CDNs -->
+    <!-- Camera Utilities has different NPM versioning (latest is v0.3), so we use unversioned URL -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+    <!-- Hands is locked to stable v0.4 -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4/hands.js"></script>
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container"></div>
+    
+    <!-- Webcam Preview Floating UI -->
+    <div id="webcam-container">
+        <video id="webcam" autoplay playsinline></video>
+        <div id="webcam-glow"></div>
+        <div id="webcam-status">
+            <span class="status-dot"></span>
+            <span class="status-text">HAND TRACKING ACTIVE</span>
+        </div>
+    </div>
+    
+    <!-- Main Game Script -->
+    <script type="module" src="main.js"></script>
+</body>
+</html>

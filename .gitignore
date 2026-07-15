@@ -1,0 +1,10 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Local Environment / Metadata
+.gemini/
+.env
+.DS_Store
+Thumbs.db
+*.log
